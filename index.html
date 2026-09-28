@@ -1,0 +1,510 @@
+<title>Blood Bowl Tournament Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F0E9;
+    --bg-alt:#FFFFFF;
+    --ink:#1C2621;
+    --ink-muted:#57635A;
+    --accent-gold:#A3781F;
+    --accent-red:#8C1C24;
+    --border:#D9D3C2;
+    --shadow:rgba(28,38,33,0.10);
+    --chip-bg:#E9E3D0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --bg:#161E1A;
+      --bg-alt:#1F2924;
+      --ink:#ECE6D6;
+      --ink-muted:#A9B2A5;
+      --accent-gold:#D9A441;
+      --accent-red:#D2555A;
+      --border:#33423A;
+      --shadow:rgba(0,0,0,0.45);
+      --chip-bg:#28352E;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --bg:#161E1A;
+    --bg-alt:#1F2924;
+    --ink:#ECE6D6;
+    --ink-muted:#A9B2A5;
+    --accent-gold:#D9A441;
+    --accent-red:#D2555A;
+    --border:#33423A;
+    --shadow:rgba(0,0,0,0.45);
+    --chip-bg:#28352E;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, 'Times New Roman', serif;
+    line-height:1.55;
+    padding-inline:20px;
+  }
+  .wrap{max-width:920px;margin:0 auto;}
+
+  h1,h2,h3,.eyebrow,.step-num,.nav-pill,.btn-reset{
+    font-family:'Oswald','Arial Narrow',sans-serif;
+  }
+  .mono{font-family:'JetBrains Mono','Courier New',monospace;}
+
+  a{color:var(--accent-red);}
+  a:hover{color:var(--accent-gold);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-block:56px 32px;
+    border-bottom:3px solid var(--ink);
+  }
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:12px;
+    font-weight:600;
+    color:var(--accent-red);
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:28px;height:2px;
+    background:var(--accent-red);
+    display:inline-block;
+  }
+  h1{
+    font-size:clamp(32px,6vw,54px);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:.005em;
+    text-wrap:balance;
+    margin:0 0 14px;
+    text-transform:uppercase;
+  }
+  .hero-sub{
+    color:var(--ink-muted);
+    font-size:17px;
+    max-width:52ch;
+    margin:0 0 28px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .nav-pill{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--chip-bg);
+    border:1px solid var(--border);
+    border-radius:3px;
+    padding:8px 14px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .nav-pill .mono{color:var(--accent-gold);}
+  .nav-pill:hover{border-color:var(--accent-gold);color:var(--ink);}
+
+  /* ---------- Section shell ---------- */
+  section{padding-block:44px;border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    margin-bottom:22px;
+  }
+  .section-head svg{flex:none;width:30px;height:30px;color:var(--accent-red);margin-top:4px;}
+  .section-head h2{
+    font-size:clamp(22px,3.4vw,30px);
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    font-weight:700;
+    margin:0 0 6px;
+  }
+  .section-head p{margin:0;color:var(--ink-muted);max-width:60ch;font-size:15.5px;}
+
+  /* ---------- Checklist ---------- */
+  .ledger{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:6px;
+    box-shadow:0 10px 24px -18px var(--shadow);
+    overflow:hidden;
+  }
+  .check-row{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:14px 20px;
+    border-bottom:1px solid var(--border);
+    cursor:pointer;
+    background:transparent;
+    width:100%;
+    text-align:left;
+    font-family:inherit;
+    color:inherit;
+    font-size:16px;
+  }
+  .check-row:last-child{border-bottom:none;}
+  .check-row:hover{background:var(--chip-bg);}
+  .box{
+    flex:none;
+    width:20px;height:20px;
+    margin-top:2px;
+    border:2px solid var(--ink-muted);
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .box svg{width:13px;height:13px;opacity:0;stroke:var(--bg-alt);}
+  .check-row.done .box{background:var(--accent-red);border-color:var(--accent-red);}
+  .check-row.done .box svg{opacity:1;}
+  .check-row.done .label{color:var(--ink-muted);text-decoration:line-through;text-decoration-color:var(--border);}
+  .sub-note{display:block;color:var(--ink-muted);font-size:13.5px;margin-top:3px;font-weight:400;}
+
+  .sublist{
+    list-style:none;
+    margin:10px 0 0 34px;
+    padding:0 20px 16px 0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-size:14.5px;
+    color:var(--ink-muted);
+  }
+  .sublist li{position:relative;padding-left:16px;}
+  .sublist li::before{
+    content:"";
+    position:absolute;left:0;top:8px;
+    width:6px;height:6px;
+    background:var(--accent-gold);
+    border-radius:1px;
+  }
+  .sublist .nested{margin-top:6px;margin-left:16px;}
+
+  .btn-reset{
+    margin-top:14px;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-weight:600;
+    color:var(--ink-muted);
+    background:none;
+    border:1px solid var(--border);
+    border-radius:3px;
+    padding:6px 12px;
+    cursor:pointer;
+  }
+  .btn-reset:hover{border-color:var(--accent-red);color:var(--accent-red);}
+
+  /* ---------- Rulespack grid ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+  @media (max-width:640px){.grid{grid-template-columns:1fr;}}
+  .card{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:18px 20px;
+    box-shadow:0 10px 24px -20px var(--shadow);
+  }
+  .card h3{
+    margin:0 0 10px;
+    font-size:16px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .card h3 .idx{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--accent-gold);
+    font-weight:700;
+  }
+  .card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:14.5px;}
+  .card li{position:relative;padding-left:15px;}
+  .card li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--accent-gold);border-radius:1px;}
+  .card ul.nested{margin-top:6px;margin-left:15px;}
+  .card p.lead{margin:0 0 14px;color:var(--ink-muted);font-size:15px;}
+
+  /* ---------- Timeline (how-to) ---------- */
+  .timeline{position:relative;margin-left:6px;padding-left:38px;}
+  .timeline::before{
+    content:"";
+    position:absolute;left:15px;top:6px;bottom:6px;
+    width:2px;background:var(--border);
+  }
+  .step{position:relative;padding-bottom:26px;}
+  .step:last-child{padding-bottom:0;}
+  .step-num{
+    position:absolute;left:-38px;top:0;
+    width:32px;height:32px;
+    background:var(--ink);
+    color:var(--bg);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:600;
+  }
+  .step h4{margin:2px 0 4px;font-size:16.5px;font-family:'Source Serif 4',serif;font-weight:700;}
+  .step .substeps{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:14.5px;color:var(--ink-muted);}
+  .step .substeps li{position:relative;padding-left:16px;}
+  .step .substeps li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--accent-red);border-radius:1px;}
+  .step .substeps .subnested{margin:6px 0 0 16px;display:flex;flex-direction:column;gap:5px;}
+  .step .substeps .subnested li::before{background:var(--accent-gold);}
+  .tag{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--accent-red);
+    background:var(--chip-bg);
+    border:1px solid var(--border);
+    border-radius:3px;
+    padding:1px 6px;
+    margin-left:8px;
+  }
+
+  figure{
+    margin:16px 0 0;
+    border:1px solid var(--border);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--bg-alt);
+    max-width:480px;
+    box-shadow:0 10px 24px -20px var(--shadow);
+  }
+  figure img{display:block;width:100%;height:auto;}
+  figcaption{
+    padding:8px 14px;
+    font-size:12.5px;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--ink-muted);
+    border-top:1px solid var(--border);
+  }
+
+  footer{padding-block:36px 60px;color:var(--ink-muted);font-size:13px;text-align:center;}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Tournament Organizer's Guide</div>
+    <h1>So You're Planning Your First Blood Bowl Tournament</h1>
+    <p class="hero-sub">Everything a first-time TO needs to get a tournament on the calendar: what to prepare, what belongs in your rulespack, and how to register on Tourplay and get NAF approval.</p>
+    <nav class="legend">
+      <a class="nav-pill" href="#checklist"><span class="mono">01</span> Checklist</a>
+      <a class="nav-pill" href="#rulespack"><span class="mono">02</span> Rulespack</a>
+      <a class="nav-pill" href="#tourplay"><span class="mono">03</span> Tourplay</a>
+      <a class="nav-pill" href="#naf"><span class="mono">04</span> NAF Approval</a>
+    </nav>
+  </header>
+
+  <section id="checklist">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <div>
+        <h2>Tournament Checklist</h2>
+        <p>The seven things to lock down before you open registration. Tap a row to check it off &mdash; your progress is kept in this browser.</p>
+      </div>
+    </div>
+    <div class="ledger" id="ledger"></div>
+    <button class="btn-reset" id="resetChecklist" type="button">Reset checklist</button>
+  </section>
+
+  <section id="rulespack">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <div>
+        <h2>Rulespack</h2>
+        <p>Your rulespack is the document or webpage where participants find everything about the tournament. It should cover at least these topics.</p>
+      </div>
+    </div>
+    <div class="grid" id="rulespackGrid"></div>
+  </section>
+
+  <section id="tourplay">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+      <div>
+        <h2>How to Tourplay</h2>
+        <p>Create and configure your tournament listing on Tourplay.</p>
+      </div>
+    </div>
+    <div class="timeline" id="tourplaySteps"></div>
+  </section>
+
+  <section id="naf">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.4-8 11-4.6-2.6-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div>
+        <h2>How to NAF Approval</h2>
+        <p>Register your tournament with the NAF so it counts toward ranking.</p>
+      </div>
+    </div>
+    <div class="timeline" id="nafSteps"></div>
+  </section>
+
+  <footer>Compiled from the DBBA tournament-organizer notes &middot; for Sevens and Elevens formats</footer>
+</div>
+
+<script>
+(function(){
+  var checklistItems = [
+    {label:"Date"},
+    {label:"Location"},
+    {label:"Rulespack"},
+    {label:"Tourplay"},
+    {label:"NAF approval"},
+    {label:"Prizes"},
+    {label:"Advertise your tournament", sub:[
+      {text:"Discord — share it in the correct DBBA Discord tournament chat (Sevens and Elevens have separate channels)", nested:["Ask other TOs to share it in their groups too"]},
+      {text:"Tourplay and NAF approval will also list your tournament on those sites automatically"},
+      {text:"Other places?"}
+    ]}
+  ];
+
+  var ledger = document.getElementById('ledger');
+  var state = {};
+  try{ state = JSON.parse(localStorage.getItem('bb-checklist') || '{}'); }catch(e){ state = {}; }
+
+  function save(){
+    try{ localStorage.setItem('bb-checklist', JSON.stringify(state)); }catch(e){}
+  }
+
+  checklistItems.forEach(function(item, i){
+    var row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'check-row' + (state[i] ? ' done' : '');
+    row.innerHTML =
+      '<span class="box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>' +
+      '<span class="label">' + item.label + '</span>';
+    row.addEventListener('click', function(){
+      state[i] = !state[i];
+      row.classList.toggle('done', !!state[i]);
+      save();
+    });
+    ledger.appendChild(row);
+
+    if (item.sub){
+      var ul = document.createElement('ul');
+      ul.className = 'sublist';
+      item.sub.forEach(function(s){
+        var li = document.createElement('li');
+        li.textContent = s.text;
+        if (s.nested){
+          var nul = document.createElement('ul');
+          nul.className = 'sublist nested';
+          s.nested.forEach(function(n){
+            var nli = document.createElement('li');
+            nli.textContent = n;
+            nul.appendChild(nli);
+          });
+          li.appendChild(nul);
+        }
+        ul.appendChild(li);
+      });
+      ledger.appendChild(ul);
+    }
+  });
+
+  document.getElementById('resetChecklist').addEventListener('click', function(){
+    state = {};
+    save();
+    ledger.querySelectorAll('.check-row').forEach(function(r){ r.classList.remove('done'); });
+  });
+
+  var rulespack = [
+    {t:"Schedule", items:["At what time participants are expected, when the breaks are, and when the tournament is expected to finish"]},
+    {t:"Format", items:["How participants are paired, whether it uses resurrection format, how long matches take, etc."]},
+    {t:"What to bring", items:["Team, dice, pitches, etc.","Mobile phone for Tourplay or other tournament software/apps"]},
+    {t:"Prizes / Awards", items:["What people can win prizes for — first place, second and/or third, other awards (most casualties, most fouls, coolest coach), Wooden Spoon","Alternative or addition &mdash; spot prizes for achievements during matches:", "&mdash; Triple Skulls", "&mdash; Double Skulls, or a reroll into Double Skulls", "&mdash; First one-turn touchdown", "&mdash; First crowd casualty", "&mdash; 3-die uphill casualty", "&mdash; Rolling a 1 on Argue the Call"]},
+    {t:"Scoring points", items:["How many points different actions earn, for example: Win/Draw/Loss points, TD, Casualties (state which casualties count), Perfect Defence"]},
+    {t:"Tiebreakers", items:["Example order: Score &gt; TD Difference (direct confrontations) &gt; TD Difference &gt; CAS Difference (direct confrontations) &gt; CAS Difference &gt; CTV (lowest)","This is the default order in Tourplay"]},
+    {t:"Permitted teams", items:["Which teams are allowed to play"]},
+    {t:"Star Players", items:["Could be as simple as “Star Players are not allowed”"]},
+    {t:"Team building", items:["Tiers","Gold","Improvement pack (how many extra skills teams can add)","Inducements"]},
+    {t:"Deviating / house rules", items:["Your own Weather table or Pitch rules, for example — worth mentioning if you use them"]}
+  ];
+
+  var grid = document.getElementById('rulespackGrid');
+  rulespack.forEach(function(c, i){
+    var card = document.createElement('div');
+    card.className = 'card';
+    var ul = c.items.map(function(it){ return '<li>' + it + '</li>'; }).join('');
+    card.innerHTML = '<h3><span class="idx">' + String(i+1).padStart(2,'0') + '</span>' + c.t + '</h3><ul>' + ul + '</ul>';
+    grid.appendChild(card);
+  });
+
+  var tourplaySteps = [
+    {h:"Log in on Tourplay"},
+    {h:"Press the three dots in the top right", sub:["Press “Create tournament”"]},
+    {h:"Fill in your tournament information", sub:["Important items:", {nested:["Rules set: Sevens or Elevens, depending on the tournament","Everything else is pretty self-explanatory","You can skip “NAF Approved” for now — update it once you have approval"]}]},
+    {h:"Click Registrations at the bottom", sub:["Choose the teams you want to allow (NAF-approved teams are currently only Slann)","Maximum number of registrations can be set lower if you want"]}
+  ];
+
+  function renderSteps(container, steps){
+    steps.forEach(function(s, i){
+      var step = document.createElement('div');
+      step.className = 'step';
+      var subHtml = '';
+      if (s.sub){
+        subHtml = '<ul class="substeps">' + s.sub.map(function(item){
+          if (typeof item === 'string') return '<li>' + item + '</li>';
+          if (item.nested) return '<ul class="subnested">' + item.nested.map(function(n){ return '<li>'+n+'</li>'; }).join('') + '</ul>';
+          return '';
+        }).join('') + '</ul>';
+      }
+      step.innerHTML = '<div class="step-num mono">' + (i+1) + '</div><h4>' + s.h + '</h4>' + subHtml;
+      container.appendChild(step);
+    });
+  }
+
+  renderSteps(document.getElementById('tourplaySteps'), tourplaySteps);
+
+  var nafContainer = document.getElementById('nafSteps');
+  var nafSteps = [
+    {h:"Go to member.thenaf.net", link:true},
+    {h:"Log in"},
+    {h:"Press Tourneys in the top right"},
+    {h:"Press “Add Tournament”", sub:["It's the top button on that page"]},
+    {h:"Fill in the data", sub:["Variant: Sevens for Sevens, Blood Bowl 2025 for the new edition"], figure:{src:"naf_form_1.png", cap:"member.thenaf.net — Add Tournament form"}}
+  ];
+
+  nafSteps.forEach(function(s, i){
+    var step = document.createElement('div');
+    step.className = 'step';
+    var h = s.link ? 'Go to <a href="http://member.thenaf.net" target="_blank" rel="noopener">member.thenaf.net</a>' : s.h;
+    var subHtml = s.sub ? '<ul class="substeps">' + s.sub.map(function(x){return '<li>'+x+'</li>';}).join('') + '</ul>' : '';
+    var figHtml = s.figure ? '<figure><img src="'+s.figure.src+'" alt="'+s.figure.cap+'" loading="lazy"><figcaption>'+s.figure.cap+'</figcaption></figure>' : '';
+    step.innerHTML = '<div class="step-num mono">' + (i+1) + '</div><h4>' + h + '</h4>' + subHtml + figHtml;
+    nafContainer.appendChild(step);
+  });
+
+  var lastFig = document.createElement('figure');
+  lastFig.innerHTML = '<img src="naf_form_2.png" alt="Filled in and saved version" loading="lazy"><figcaption>Filled in and saved version</figcaption>';
+  var lastStep = document.createElement('div');
+  lastStep.className = 'step';
+  lastStep.appendChild(lastFig);
+  nafContainer.appendChild(lastStep);
+})();
+</script>
