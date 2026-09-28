@@ -246,6 +246,7 @@
   .card li{position:relative;padding-left:15px;}
   .card li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--accent-gold);border-radius:1px;}
   .card ul.nested{margin-top:6px;margin-left:15px;}
+  .card ul.nested li::before{width:5px;height:5px;top:8px;background:var(--accent-red);border-radius:50%;}
   .card p.lead{margin:0 0 14px;color:var(--ink-muted);font-size:15px;}
 
   /* ---------- Timeline (how-to) ---------- */
@@ -437,7 +438,7 @@
     {t:"Schedule", items:["At what time participants are expected, when the breaks are, and when the tournament is expected to finish"]},
     {t:"Format", items:["How participants are paired, whether it uses resurrection format, how long matches take, etc."]},
     {t:"What to bring", items:["Team, dice, pitches, etc.","Mobile phone for Tourplay or other tournament software/apps"]},
-    {t:"Prizes / Awards", items:["What people can win prizes for — first place, second and/or third, other awards (most casualties, most fouls, coolest coach), Wooden Spoon","Alternative or addition &mdash; spot prizes for achievements during matches:", "&mdash; Triple Skulls", "&mdash; Double Skulls, or a reroll into Double Skulls", "&mdash; First one-turn touchdown", "&mdash; First crowd casualty", "&mdash; 3-die uphill casualty", "&mdash; Rolling a 1 on Argue the Call"]},
+    {t:"Prizes / Awards", items:["What people can win prizes for — first place, second and/or third, other awards (most casualties, most fouls, coolest coach), Wooden Spoon",{text:"Alternative or addition — spot prizes for achievements during matches:", nested:["Triple Skulls","Double Skulls, or a reroll into Double Skulls","First one-turn touchdown","First crowd casualty","3-die uphill casualty","Rolling a 1 on Argue the Call"]}]},
     {t:"Scoring points", items:["How many points different actions earn, for example: Win/Draw/Loss points, TD, Casualties (state which casualties count), Perfect Defence"]},
     {t:"Tiebreakers", items:["Example order: Score &gt; TD Difference (direct confrontations) &gt; TD Difference &gt; CAS Difference (direct confrontations) &gt; CAS Difference &gt; CTV (lowest)","This is the default order in Tourplay"]},
     {t:"Permitted teams", items:["Which teams are allowed to play"]},
@@ -450,7 +451,11 @@
   rulespack.forEach(function(c, i){
     var card = document.createElement('div');
     card.className = 'card';
-    var ul = c.items.map(function(it){ return '<li>' + it + '</li>'; }).join('');
+    var ul = c.items.map(function(it){
+      if (typeof it === 'string') return '<li>' + it + '</li>';
+      var nestedHtml = '<ul class="nested">' + it.nested.map(function(n){ return '<li>'+n+'</li>'; }).join('') + '</ul>';
+      return '<li>' + it.text + nestedHtml + '</li>';
+    }).join('');
     card.innerHTML = '<h3><span class="idx">' + String(i+1).padStart(2,'0') + '</span>' + c.t + '</h3><ul>' + ul + '</ul>';
     grid.appendChild(card);
   });
