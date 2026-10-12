@@ -1,0 +1,149 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DBBA Recommended Rulespack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<header class="hero">
+  <div class="wrap hero-grid">
+   <div>
+    <div class="eyebrow">Tournament Organizer's Guide</div>
+    <h1>Recommended <span class="hl">Rulespack</span></h1>
+    <p class="hero-sub">The DBBA's recommended rules for Blood Bowl Sevens tournaments. Share the PDF as it is, or download the Word version and fill in your own tournament details.</p>
+    <nav class="legend">
+      <a class="nav-pill" href="index.html#rulespack"><span class="mono">←</span> Back to guide</a>
+      <a class="nav-pill" href="rulespack/DBBA-Recommended-Rulespack.pdf" download><span class="mono">↓</span> PDF</a>
+      <a class="nav-pill" href="rulespack/DBBA-Recommended-Rulespack.docx" download><span class="mono">↓</span> Word</a>
+    </nav>
+   </div>
+    <img class="hero-logo" src="dbba-logo.png" alt="Dutch Blood Bowl Association">
+  </div>
+</header>
+<div class="flag" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="wrap">
+
+  <section id="viewer">
+    <div class="viewer-bar">
+      <div class="seg" role="group" aria-label="Choose document">
+        <button type="button" data-doc="pdf" aria-pressed="true">PDF</button>
+        <button type="button" data-doc="word" aria-pressed="false">Word</button>
+      </div>
+      <p class="viewer-note" id="viewerNote"></p>
+      <a class="btn-reset viewer-open" id="viewerOpen" href="#" target="_blank" rel="noopener">Open full size ↗</a>
+    </div>
+
+    <div class="viewer doc-pane" id="pane-pdf">
+      <div id="pdfStatus" class="docx-status">Loading the PDF…</div>
+      <div id="pdfContainer" class="pdf-pages"></div>
+    </div>
+    <div class="viewer doc-pane" id="pane-word" hidden>
+      <div id="docxStatus" class="docx-status">Loading the Word document…</div>
+      <div id="docxContainer"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">Dutch Blood Bowl Association &middot; Recommended Rulespack v1.0</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.5/dist/docx-preview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script>
+(function(){
+  var docs = {
+    pdf:  { file: 'rulespack/DBBA-Recommended-Rulespack.pdf',  open: 'rulespack/DBBA-Recommended-Rulespack.pdf',
+            note: 'The ready-to-share version, with the rules only.' },
+    word: { file: 'rulespack/DBBA-Recommended-Rulespack.docx', open: 'rulespack/DBBA-Recommended-Rulespack.docx',
+            note: 'The editable template, with extra sections for your own tournament details. Fonts may differ slightly from Word.' }
+  };
+  var buttons = document.querySelectorAll('.seg button');
+  var note = document.getElementById('viewerNote');
+  var openLink = document.getElementById('viewerOpen');
+  var wordLoaded = false, pdfLoaded = false;
+
+  function loadPdf(){
+    if (pdfLoaded) return;
+    pdfLoaded = true;
+    var status = document.getElementById('pdfStatus');
+    var container = document.getElementById('pdfContainer');
+    var lib = window.pdfjsLib;
+    if (!lib) { status.innerHTML = 'The PDF preview could not be loaded. <a href="' + docs.pdf.file + '">Open the PDF</a> instead.'; return; }
+    lib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+    lib.getDocument(docs.pdf.file).promise.then(function(pdf){
+      var chain = Promise.resolve();
+      for (var n = 1; n <= pdf.numPages; n++) (function(n){
+        chain = chain.then(function(){ return pdf.getPage(n); }).then(function(page){
+          // Render at A4 size (794px wide at 96dpi), sharp on high-density screens
+          var base = page.getViewport({ scale: 1 });
+          var scale = 794 / base.width * Math.min(window.devicePixelRatio || 1, 2);
+          var vp = page.getViewport({ scale: scale });
+          var canvas = document.createElement('canvas');
+          canvas.width = vp.width; canvas.height = vp.height;
+          canvas.setAttribute('aria-label', 'Page ' + n);
+          container.appendChild(canvas);
+          return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+        });
+      })(n);
+      return chain;
+    }).then(function(){ status.remove(); })
+    .catch(function(){
+      pdfLoaded = false;
+      status.innerHTML = 'The PDF preview could not be loaded. <a href="' + docs.pdf.file + '">Open the PDF</a> instead.';
+    });
+  }
+
+  function loadWord(){
+    if (wordLoaded) return;
+    wordLoaded = true;
+    var status = document.getElementById('docxStatus');
+    fetch(docs.word.file)
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.blob(); })
+      .then(function(blob){
+        return window.docx.renderAsync(blob, document.getElementById('docxContainer'), null, {
+          className: 'docx', inWrapper: true, ignoreLastRenderedPageBreak: true, renderHeaders: true, renderFooters: true
+        });
+      })
+      .then(function(){ status.remove(); fitWord(); })
+      .catch(function(){
+        wordLoaded = false;
+        status.innerHTML = 'The Word preview could not be loaded. <a href="' + docs.word.file + '" download>Download the Word file</a> instead.';
+      });
+  }
+
+  // Scale the Word pages down on narrow screens so a whole page width fits
+  function fitWord(){
+    var pane = document.getElementById('pane-word');
+    var wrapper = pane.querySelector('.docx-wrapper');
+    var page = pane.querySelector('section.docx');
+    if (!wrapper || !page || pane.hidden) return;
+    wrapper.style.zoom = '';
+    wrapper.style.zoom = Math.min(1, (pane.clientWidth - 24) / page.offsetWidth);
+  }
+  window.addEventListener('resize', fitWord);
+
+  function show(name){
+    if (!docs[name]) name = 'pdf';
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.doc === name)); });
+    document.getElementById('pane-pdf').hidden = name !== 'pdf';
+    document.getElementById('pane-word').hidden = name !== 'word';
+    note.textContent = docs[name].note;
+    openLink.href = docs[name].open;
+    openLink.textContent = name === 'pdf' ? 'Open full size ↗' : 'Download Word ↓';
+    if (name === 'word') { openLink.setAttribute('download', ''); openLink.removeAttribute('target'); loadWord(); fitWord(); }
+    else { openLink.removeAttribute('download'); openLink.setAttribute('target', '_blank'); loadPdf(); }
+    if (location.hash !== '#' + name) history.replaceState(null, '', '#' + name);
+  }
+
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.doc); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.target.closest && e.target.closest('input,textarea')) return;
+    if (e.key === '1') show('pdf');
+    if (e.key === '2') show('word');
+  });
+  show(location.hash.slice(1));
+})();
+</script>

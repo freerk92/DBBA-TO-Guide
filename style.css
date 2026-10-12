@@ -136,8 +136,8 @@ h1 .hl{color:var(--orange);}
 .flag span:nth-child(3){background:var(--flag-blue);}
 
 /* ---------- Section shell ---------- */
-section{padding-block:48px;border-bottom:2px solid var(--border);}
-section:last-of-type{border-bottom:none;}
+main > section{padding-block:48px;border-bottom:2px solid var(--border);}
+main > section:last-of-type{border-bottom:none;}
 .section-head{
   display:flex;
   align-items:flex-start;
@@ -352,7 +352,7 @@ figcaption{
 }
 
 /* ---------- Footer (orange band, like the flyer's call to action) ---------- */
-footer{
+body > footer{
   background:var(--orange);
   color:var(--navy);
   padding-block:22px;
@@ -360,3 +360,28 @@ footer{
   font-weight:600;
   text-align:center;
 }
+
+/* ---------- Rulespack viewer ---------- */
+.viewer-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-bottom:16px;}
+.viewer-bar .btn-reset{margin-top:0;text-decoration:none;}
+.viewer-open{margin-left:auto;}
+.viewer-note{margin:0;color:var(--ink-muted);font-size:14.5px;flex:1 1 240px;}
+.seg{display:inline-flex;border:2px solid var(--ink);border-radius:3px;overflow:hidden;}
+.seg button{
+  font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  background:none;color:var(--ink);border:0;padding:8px 18px;cursor:pointer;
+}
+.seg button + button{border-left:2px solid var(--ink);}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);}
+.seg button:not([aria-pressed="true"]):hover{background:var(--accent);color:var(--navy);}
+.viewer{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#525659;}
+.viewer[hidden]{display:none;}
+.doc-pane{height:90vh;min-height:640px;overflow:auto;}
+.doc-pane .docx-wrapper{background:#525659;padding:24px 12px;}
+.doc-pane .docx-wrapper > section.docx{box-shadow:0 2px 10px rgba(0,0,0,.35);margin-bottom:24px;}
+.pdf-pages{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 12px;}
+.pdf-pages canvas{display:block;width:794px;max-width:100%;height:auto;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);}
+.docx-status{color:#F2EBDD;padding:24px;font-size:15px;}
+.docx-status a{color:var(--orange);}
+.rulespack-cta{margin:18px 0 0;}
+.rulespack-cta a{text-decoration:none;display:inline-block;}

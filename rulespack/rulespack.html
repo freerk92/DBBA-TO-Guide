@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DBBA Recommended Rulespack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Big+Shoulders+Display:wght@700;900&display=block" rel="stylesheet">
+<style>
+/* Palette and type follow the DBBA qualifier flyer */
+:root{
+  --navy:#1A2B4C;
+  --cream:#F2EBDD;
+  --paper:#FBF7EE;
+  --orange:#E8821E;
+  --orange-ink:#A8520A;
+  --muted:#4F5D78;
+  --border:#DCD1BC;
+  --chip:#E8DFCB;
+  --flag-red:#B3161F;
+  --flag-white:#F7F4EC;
+  --flag-blue:#1F3F8A;
+}
+@page{size:A4;margin:0;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:#888;
+  color:var(--navy);
+  font-family:'Archivo',Arial,sans-serif;
+  font-size:10pt;
+  line-height:1.45;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+.page{
+  width:210mm;height:297mm;
+  background:var(--paper);
+  position:relative;
+  overflow:hidden;
+  page-break-after:always;
+  display:flex;flex-direction:column;
+}
+.page:last-child{page-break-after:auto;}
+@media screen{ .page{margin:0 auto 0;} }
+
+.display{font-family:'Big Shoulders Display','Arial Black',sans-serif;font-weight:900;text-transform:uppercase;line-height:0.86;}
+.kicker{font-weight:800;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);}
+.flag{display:flex;flex-direction:column;}
+.flag div{height:3.2mm;}
+.flag .r{background:var(--flag-red);} .flag .w{background:var(--flag-white);} .flag .b{background:var(--flag-blue);}
+
+/* ---------- Cover ---------- */
+.cover{background:var(--navy);color:var(--cream);}
+.cover-top{padding:22mm 20mm 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.cover-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20mm;gap:9mm;}
+.cover-body img{width:92mm;height:92mm;object-fit:contain;}
+.cover h1{margin:0;font-size:58pt;}
+.cover h1 .o{color:var(--orange);}
+.cover .sub{font-size:13pt;font-weight:600;max-width:130mm;color:#D9D2C3;}
+.cover-foot{background:var(--orange);color:var(--navy);padding:7mm 20mm;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:9.5pt;letter-spacing:0.12em;text-transform:uppercase;}
+
+/* ---------- Content pages ---------- */
+.runhead{display:flex;justify-content:space-between;align-items:center;padding:8mm 16mm 4mm;border-bottom:0.6mm solid var(--navy);margin:0 0 0;}
+.runhead .t{font-family:'Big Shoulders Display','Arial Black',sans-serif;font-weight:900;font-size:13pt;text-transform:uppercase;}
+.runhead img{width:11mm;height:11mm;object-fit:contain;}
+.content{flex:1;padding:7mm 16mm 0;display:flex;flex-direction:column;gap:5.5mm;}
+.foot{padding:5mm 16mm 7mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;font-weight:600;}
+
+section h2{margin:0 0 2.2mm;font-family:'Big Shoulders Display','Arial Black',sans-serif;font-weight:900;font-size:19pt;line-height:0.95;text-transform:uppercase;display:flex;align-items:baseline;gap:3mm;}
+section h2 .n{color:var(--orange);font-size:13pt;}
+section p{margin:0 0 2mm;}
+.intro{font-size:10.5pt;padding:4mm 5mm;background:var(--chip);border-left:1.6mm solid var(--orange);}
+ul.d{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:1.4mm;}
+ul.d li{position:relative;padding-left:5.5mm;}
+ul.d li::before{content:"";position:absolute;left:0.6mm;top:1.6mm;width:2.2mm;height:2.2mm;background:var(--orange);transform:rotate(45deg);}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8mm;}
+
+table{border-collapse:collapse;width:100%;font-size:9.5pt;}
+th{background:var(--navy);color:var(--cream);text-align:left;font-weight:800;font-size:8.5pt;letter-spacing:0.08em;text-transform:uppercase;padding:2mm 3mm;}
+td{padding:1.5mm 3mm;border-bottom:0.3mm solid var(--border);}
+tbody tr:nth-child(even) td{background:#F4EEE2;}
+td.c,th.c{text-align:center;}
+td.pts{font-weight:800;text-align:right;white-space:nowrap;}
+.tiers td{width:25%;}
+.note{font-size:8.5pt;color:var(--muted);margin-top:1.8mm;}
+ol.tb{margin:0;padding:0;list-style:none;counter-reset:tb;display:flex;flex-direction:column;gap:1.3mm;}
+ol.tb li{counter-increment:tb;display:flex;gap:3mm;align-items:center;min-height:5.5mm;line-height:1.25;}
+ol.tb li::before{content:counter(tb);flex:none;width:5.5mm;height:5.5mm;border-radius:50%;background:var(--orange);color:var(--navy);font-weight:800;font-size:8pt;line-height:5.5mm;padding-top:0.35mm;text-align:center;font-variant-numeric:tabular-nums;}
+
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="kicker">Dutch Blood Bowl Association</div>
+    <div class="kicker">Season 2027</div>
+  </div>
+  <div class="cover-body">
+    <img src="../dbba-logo.png" alt="Dutch Blood Bowl Association">
+    <h1 class="display">Recommended<br><span class="o">Rulespack</span></h1>
+    <div class="sub">Blood Bowl Sevens tournament rules for DBBA qualifiers</div>
+  </div>
+  <div class="flag"><div class="r"></div><div class="w"></div><div class="b"></div></div>
+  <div class="cover-foot"><span>BB2025 · Spike! #22</span><span>Version 1.0 · October 2026</span></div>
+</section>
+
+<!-- Page 1 -->
+<section class="page">
+  <div class="runhead"><span class="t">DBBA Recommended Rulespack</span><img src="../dbba-logo.png" alt=""></div>
+
+  <div class="content">
+    <div class="intro">These are the DBBA's recommended rules for Blood Bowl Sevens tournaments. Tournament organisers add their own schedule, prizes, venue and entry details.</div>
+
+    <section>
+      <h2><span class="n">01</span>Ruleset</h2>
+      <ul class="d">
+        <li>Blood Bowl 2025 rules, with the Sevens rules from Blood Bowl Spike! Magazine #22, and official errata.</li>
+        <li>The tournament is NAF sanctioned.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>Format</h2>
+      <ul class="d">
+        <li><strong>Resurrection:</strong> every match starts with the team as registered. No SPP or injuries carry over between matches.</li>
+        <li><strong>Swiss pairing:</strong> winners play winners and losers play losers. Rematches are avoided where possible.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span>Team building</h2>
+      <ul class="d">
+        <li><strong>Team value:</strong> up to 600,000 gold pieces.</li>
+        <li><strong>Permitted teams:</strong> the teams listed in the tier table.</li>
+        <li><strong>Star Players:</strong> not allowed.</li>
+        <li><strong>Inducements:</strong> bought at team creation from your 600,000 gold, and kept for the whole tournament. Tourplay shows which inducements are available to your team.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span>Improvement pack</h2>
+      <p>On top of the 600,000 gold, each team adds extra skills based on its tier.</p>
+      <table>
+        <thead><tr><th>Tier</th><th class="c">Primary</th><th class="c">Secondary</th><th class="c">Max. Elite</th></tr></thead>
+        <tbody>
+          <tr><td>Tier 1</td><td class="c">2</td><td class="c">–</td><td class="c">1</td></tr>
+          <tr><td>Tier 2</td><td class="c">3</td><td class="c">–</td><td class="c">1</td></tr>
+          <tr><td>Tier 3</td><td class="c">2</td><td class="c">1</td><td class="c">1</td></tr>
+          <tr><td>Tier 4</td><td class="c">2</td><td class="c">2</td><td class="c">2</td></tr>
+        </tbody>
+      </table>
+      <ul class="d" style="margin-top:3mm">
+        <li>No player may receive more than one extra skill.</li>
+        <li>A Primary skill may always be taken instead of a Secondary skill.</li>
+        <li><strong>Banned skills:</strong> Leader and Pro, as per Spike! #22.</li>
+      </ul>
+    </section>
+  </div>
+  <div class="foot"><span>DBBA Recommended Rulespack · v1.0</span><span>1</span></div>
+</section>
+
+<!-- Page 2 -->
+<section class="page">
+  <div class="runhead"><span class="t">DBBA Recommended Rulespack</span><img src="../dbba-logo.png" alt=""></div>
+  <div class="content">
+    <section>
+      <h2><span class="n">05</span>Team tiers</h2>
+      <table class="tiers">
+        <thead><tr><th>Tier 1</th><th>Tier 2</th><th>Tier 3</th><th>Tier 4</th></tr></thead>
+        <tbody>
+          <tr><td>Amazon</td><td>Bretonnian</td><td>Black Orc</td><td>Gnome</td></tr>
+          <tr><td>Chaos Dwarf</td><td>Dwarf</td><td>Chaos Chosen</td><td>Goblin</td></tr>
+          <tr><td>Dark Elf</td><td>Imperial Nobility</td><td>Chaos Renegade</td><td>Ogre</td></tr>
+          <tr><td>Elven Union</td><td>Lizardmen</td><td>Halfling</td><td>Snotling</td></tr>
+          <tr><td>Human</td><td>Nurgle</td><td>Khorne</td><td></td></tr>
+          <tr><td>High Elf</td><td>Orc</td><td></td><td></td></tr>
+          <tr><td>Necromantic Horror</td><td>Shambling Undead</td><td></td><td></td></tr>
+          <tr><td>Norse</td><td>Tomb Kings</td><td></td><td></td></tr>
+          <tr><td>Old World Alliance</td><td>Vampire</td><td></td><td></td></tr>
+          <tr><td>Skaven</td><td></td><td></td><td></td></tr>
+          <tr><td>Underworld Denizens</td><td></td><td></td><td></td></tr>
+          <tr><td>Wood Elf</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="two">
+      <section>
+        <h2><span class="n">06</span>Scoring</h2>
+        <table>
+          <thead><tr><th>Per match</th><th style="text-align:right">Points</th></tr></thead>
+          <tbody>
+            <tr><td>Win</td><td class="pts">20</td></tr>
+            <tr><td>Draw</td><td class="pts">10</td></tr>
+            <tr><td>Loss</td><td class="pts">0</td></tr>
+            <tr><td>Touchdown (max. 5)</td><td class="pts">1 each</td></tr>
+            <tr><td>Casualty (max. 5)</td><td class="pts">1 each</td></tr>
+            <tr><td>Perfect Defence (no TDs conceded)</td><td class="pts">3</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Casualties count when you cause them on your opponent's players: blocks, fouls, crowd pushes, Secret Weapons, and thrown or kicked players.</p>
+      </section>
+
+      <section>
+        <h2><span class="n">07</span>Tiebreakers</h2>
+        <p>When coaches finish on equal points, these decide the ranking, in order:</p>
+        <ol class="tb">
+          <li>Score in direct matches</li>
+          <li>Touchdown difference in direct matches</li>
+          <li>Touchdown difference</li>
+          <li>Casualty difference in direct matches</li>
+          <li>Casualty difference</li>
+          <li>Team value (lowest wins)</li>
+        </ol>
+        <p class="note">This is the default tiebreaker order in Tourplay.</p>
+      </section>
+    </div>
+  </div>
+  <div class="foot"><span>DBBA Recommended Rulespack · v1.0</span><span>2</span></div>
+</section>
+
+</body>
+</html>
