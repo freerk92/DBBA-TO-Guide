@@ -407,6 +407,100 @@ body > footer{
 .topbar-links a[aria-current="page"]{opacity:1;color:var(--orange);border-bottom-color:var(--orange);}
 @media (max-width:480px){
   .topbar-inner{gap:10px;}
-  .topbar-long{display:none;}
-  .topbar-links a{padding-inline:7px;font-size:11.5px;letter-spacing:.06em;}
+  .topbar-long,.topbar-brand span{display:none;}
+  .topbar-links{gap:0;}
+  .topbar-links a{padding-inline:5px;font-size:11px;letter-spacing:.03em;}
+}
+
+/* ---------- 2027 calendar ---------- */
+.map-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:start;}
+@media (max-width:720px){.map-layout{grid-template-columns:1fr;}}
+/* The map art has fixed light colours, so its panel stays light in dark mode too */
+.nl-map{position:relative;background:#F2EBDD;border:1px solid var(--border);border-radius:6px;aspect-ratio:600/680;}
+.nl-map img{position:absolute;inset:0;width:100%;height:100%;}
+.map-pin{
+  position:absolute;transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:6px;
+  background:none;border:0;padding:0;cursor:pointer;
+  font-family:inherit;font-weight:800;font-size:clamp(12px,2.2vw,16px);color:#1A2B4C;
+}
+.map-pin .dot{
+  flex:none;width:18px;height:18px;border-radius:50%;
+  background:var(--orange);border:3px solid #1A2B4C;
+  transition:transform .15s;
+}
+/* Keep the dot on the city: the label hangs off to one side */
+.map-pin .pin-label{position:absolute;white-space:nowrap;top:50%;transform:translateY(-50%);padding:1px 4px;border-radius:3px;background:rgba(242,235,221,.8);}
+.map-pin.right .pin-label{left:22px;}
+.map-pin.left .pin-label{right:22px;}
+.map-pin:hover .dot,.map-pin[aria-pressed="true"] .dot{transform:scale(1.3);}
+.map-pin[aria-pressed="true"] .pin-label{background:#1A2B4C;color:#F2EBDD;}
+.map-pin:focus-visible{outline:none;}
+.map-pin:focus-visible .dot{outline:3px solid var(--flag-blue);outline-offset:2px;}
+
+.city-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.city-btn{
+  width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;
+  text-align:left;font-family:inherit;color:var(--ink);cursor:pointer;
+  background:var(--bg-alt);border:1.5px solid var(--border);border-radius:6px;padding:10px 14px;min-height:44px;
+}
+.city-btn:hover{border-color:var(--accent);}
+.city-btn[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent);}
+.city-name{font-weight:800;font-size:16px;}
+.city-league{grid-row:2;font-size:13px;color:var(--ink-muted);font-weight:600;letter-spacing:.06em;}
+.city-count{grid-row:1 / span 2;grid-column:2;align-self:center;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);}
+
+.cal-filter{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-bottom:18px;font-size:15px;}
+.cal-filter[hidden]{display:flex;visibility:hidden;}
+.cal-filter .btn-reset{margin-top:0;}
+.cal-halves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;align-items:start;}
+@media (max-width:720px){.cal-halves{grid-template-columns:1fr;}}
+.cal-half-title{
+  font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;text-transform:uppercase;
+  font-size:32px;line-height:1;margin:0 0 12px;padding-bottom:8px;border-bottom:3px solid var(--ink);
+}
+.cal-half-title span{color:var(--accent-ink);}
+.cal-month{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;align-items:start;margin-bottom:10px;}
+.cal-event{transition:opacity .15s,border-color .15s;}
+.cal-event.is-dim{opacity:.35;}
+.cal-event.is-match{border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent);}
+.cal-m{font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;font-size:28px;line-height:52px;text-transform:uppercase;}
+.cal-events{display:flex;flex-direction:column;gap:6px;}
+.cal-event{
+  display:flex;align-items:center;gap:12px;min-height:52px;padding:7px 14px;
+  background:var(--bg-alt);border:1.5px solid var(--border);border-radius:8px;
+}
+.cal-date{flex:none;width:84px;font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;font-size:20px;text-transform:uppercase;color:var(--accent-ink);line-height:1.05;}
+.cal-date.tba{font-family:inherit;font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--ink-muted);}
+.cal-name{font-weight:800;font-size:15.5px;line-height:1.2;}
+.cal-where{font-size:13px;color:var(--ink-muted);font-weight:600;}
+.cal-month.empty{align-items:center;}
+.cal-month.empty .cal-m{line-height:40px;color:var(--ink-muted);opacity:.7;}
+.cal-none{height:40px;display:flex;align-items:center;padding:0 14px;border:2px dashed var(--border);border-radius:8px;font-size:14px;font-weight:600;color:var(--ink-muted);}
+
+.champ{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;background:var(--navy);color:var(--cream);border-radius:8px;padding:24px 28px;border-top:6px solid var(--orange);}
+.champ-when{display:flex;flex-direction:column;font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;text-transform:uppercase;line-height:.92;}
+.champ-when span:first-child{font-size:52px;}
+.champ-when span:last-child{font-size:28px;color:var(--orange);}
+.champ h2{font-size:clamp(34px,6vw,52px);line-height:.9;margin:0 0 8px;color:var(--orange);}
+.champ p{margin:0;opacity:.9;}
+@media (max-width:480px){.champ{grid-template-columns:1fr;gap:12px;}}
+
+/* ---------- Calendar images ---------- */
+.img-group-title{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin:28px 0 12px;}
+.img-group-title:first-of-type{margin-top:0;}
+.img-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+@media (max-width:640px){.img-grid{grid-template-columns:1fr;}}
+figure.share-img{margin:0;max-width:none;}
+.share-img img{height:auto;}
+.share-img figcaption{display:flex;justify-content:space-between;gap:10px;}
+
+/* Top bar brand: full name on wide screens, DBBA on medium, logo only on phones */
+.topbar-brand .brand-short{display:none;}
+@media (max-width:900px){
+  .topbar-brand .brand-full{display:none;}
+  .topbar-brand .brand-short{display:inline;}
+}
+@media (max-width:480px){
+  .topbar-brand .brand-short{display:none;}
 }

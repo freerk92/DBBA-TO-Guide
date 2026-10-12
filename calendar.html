@@ -1,0 +1,216 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Sevens 2027 Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=7">
+
+<nav class="topbar" aria-label="DBBA pages">
+  <div class="wrap topbar-inner">
+    <a class="topbar-brand" href="index.html"><img src="dbba-logo.png" alt=""><span class="brand-full">Dutch Blood Bowl Association</span><span class="brand-short">DBBA</span></a>
+    <div class="topbar-links">
+      <a href="index.html">TO Guide</a>
+      <a href="recommended-rulespack.html">Rulespack</a>
+      <a href="calendar.html" aria-current="page"><span class="topbar-long">2027 </span>Calendar</a>
+      <a href="page2.html"><span class="topbar-long">Qualifier </span>Flyer</a>
+    </div>
+  </div>
+</nav>
+<header class="hero">
+  <div class="wrap hero-grid">
+   <div>
+    <div class="eyebrow">DBBA presents &middot; 2027 Qualifier Tour</div>
+    <h1>Dutch Super Sevens <span class="hl">Showdown</span></h1>
+    <p class="hero-sub">Eighteen Blood Bowl Sevens qualifiers across the Netherlands in 2027. The top 8 qualify for the Championship in February 2028.</p>
+    <nav class="legend">
+      <a class="nav-pill" href="#locations"><span class="mono">01</span> Locations</a>
+      <a class="nav-pill" href="#dates"><span class="mono">02</span> Dates</a>
+      <a class="nav-pill" href="#championship"><span class="mono">03</span> Championship</a>
+      <a class="nav-pill" href="#images"><span class="mono">04</span> Images</a>
+    </nav>
+   </div>
+    <img class="hero-logo" src="dbba-logo.png" alt="Dutch Blood Bowl Association">
+  </div>
+</header>
+<div class="flag" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="wrap">
+
+  <section id="locations">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>
+        <h2>Qualifier Locations</h2>
+        <p>Seven cities host at least one qualifier. Pick a city to highlight its tournaments in the calendar below.</p>
+      </div>
+    </div>
+    <div class="map-layout">
+      <div class="nl-map">
+        <img src="nl-map.svg" alt="Map of the Netherlands with the seven qualifier cities marked">
+        <div id="mapPins"></div>
+      </div>
+      <ul class="city-list" id="cityList"></ul>
+    </div>
+  </section>
+
+  <section id="dates">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div>
+        <h2>2027 Calendar</h2>
+        <p>Most dates are still to be announced. Check back here, or follow your local league, for updates.</p>
+      </div>
+    </div>
+    <div class="cal-filter" id="calFilter" hidden>
+      <span>Highlighting tournaments in <strong id="calFilterCity"></strong></span>
+      <button class="btn-reset" type="button" id="calFilterClear">Clear</button>
+    </div>
+    <div class="cal-halves">
+      <div class="cal-half">
+        <h3 class="cal-half-title">Jan &ndash; <span>Jun</span></h3>
+        <div id="calH1"></div>
+      </div>
+      <div class="cal-half">
+        <h3 class="cal-half-title">Jul &ndash; <span>Dec</span></h3>
+        <div id="calH2"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="championship">
+    <div class="champ">
+      <div class="champ-when"><span>Feb</span><span>2028</span></div>
+      <div class="champ-body">
+        <h2>The Championship</h2>
+        <p>The top 8 of the qualifier tour play for the title. Location to be announced.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="images">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <div>
+        <h2>Images</h2>
+        <p>The calendar as images, to share on socials or put on your own site.</p>
+      </div>
+    </div>
+    <h3 class="img-group-title">Socials carousel &middot; 4:5</h3>
+    <div class="img-grid">
+      <figure class="share-img">
+        <a href="calendar/super-sevens-2027-1-map.png" target="_blank"><img src="calendar/super-sevens-2027-1-map.png" alt="Slide 1: map of the qualifier locations" width="1080" height="1350" loading="lazy"></a>
+        <figcaption>Slide 1 &middot; Map <a href="calendar/super-sevens-2027-1-map.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="share-img">
+        <a href="calendar/super-sevens-2027-2-jan-jun.png" target="_blank"><img src="calendar/super-sevens-2027-2-jan-jun.png" alt="Slide 2: tournaments January to June" width="1080" height="1350" loading="lazy"></a>
+        <figcaption>Slide 2 &middot; Jan&ndash;Jun <a href="calendar/super-sevens-2027-2-jan-jun.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="share-img">
+        <a href="calendar/super-sevens-2027-3-jul-dec.png" target="_blank"><img src="calendar/super-sevens-2027-3-jul-dec.png" alt="Slide 3: tournaments July to December and the Championship" width="1080" height="1350" loading="lazy"></a>
+        <figcaption>Slide 3 &middot; Jul&ndash;Dec <a href="calendar/super-sevens-2027-3-jul-dec.png" download>Download</a></figcaption>
+      </figure>
+    </div>
+    <h3 class="img-group-title">Wide &middot; 16:9</h3>
+    <figure class="share-img">
+      <a href="calendar/super-sevens-2027-wide.png" target="_blank"><img src="calendar/super-sevens-2027-wide.png" alt="The whole 2027 calendar with the map on one wide image" width="1920" height="1080" loading="lazy"></a>
+      <figcaption>Map and full calendar <a href="calendar/super-sevens-2027-wide.png" download>Download</a></figcaption>
+    </figure>
+  </section>
+
+</main>
+
+<footer><div class="wrap">Dutch Blood Bowl Association &middot; Dutch Super Sevens Showdown 2027</div></footer>
+
+<script>
+(function(){
+  // Map positions are percentages of the map image; side is where the label goes
+  var cities = [
+    { name: 'Leeuwarden', league: 'FLABBY', x: 62.2, y: 15.4, side: 'right' },
+    { name: 'Assen',      league: 'VSL',    x: 79.7, y: 22.4, side: 'right' },
+    { name: 'Purmerend',  league: 'ZBBL',   x: 42.8, y: 38.2, side: 'right' },
+    { name: 'Amsterdam',  league: 'ABBA',   x: 41.5, y: 42.9, side: 'left'  },
+    { name: 'Leiden',     league: 'LBBL',   x: 32.2, y: 49.7, side: 'left'  },
+    { name: 'Arnhem',     league: 'ABBL',   x: 64.5, y: 55.6, side: 'right' },
+    { name: 'Goes',       league: 'ZEEBBL', x: 18.3, y: 71.5, side: 'right' }
+  ];
+
+  // date: shown when known, otherwise "Date TBA"
+  var months = [
+    { m: 'Jan', events: [{ name: 'Arcane Forge Series #1', city: 'Amsterdam', date: 'Sat 16 Jan' }] },
+    { m: 'Feb', events: [{ name: 'Goof-Ball Tournament', city: 'Leeuwarden' },
+                         { name: 'Leidsch Sleutel Tournament', city: 'Leiden' }] },
+    { m: 'Mar', events: [{ name: 'Arcane Forge Series #2 The Two Towers', city: 'Amsterdam' },
+                         { name: 'Viking Bowl', city: 'Assen' }] },
+    { m: 'Apr', events: [{ name: 'SwanBowl 1', city: 'Arnhem' },
+                         { name: 'ZaanBowl', city: 'Purmerend' }] },
+    { m: 'May', events: [{ name: 'Arcane Forge Series #3 Guiseppe in Goldmember', city: 'Amsterdam' }] },
+    { m: 'Jun', events: [{ name: 'Pizza Smashers', city: 'Goes' }] },
+    { m: 'Jul', events: [{ name: 'Arcane Forge Series #4 Fury Road', city: 'Amsterdam' },
+                         { name: 'Pitches 2: Life is a Pitch', city: 'Leeuwarden' }] },
+    { m: 'Aug', events: [] },
+    { m: 'Sep', events: [{ name: 'Shell Shock', city: 'Goes' },
+                         { name: 'Viking Bowl 2: Attack of the Clones', city: 'Assen' }] },
+    { m: 'Oct', events: [{ name: 'Arcane Forge Series #5 Rogue Nation', city: 'Amsterdam' },
+                         { name: 'ZaanBowl 2: Electric Boogaloo', city: 'Purmerend' }] },
+    { m: 'Nov', events: [{ name: 'Pumpkin Punchers', city: 'Leiden' },
+                         { name: 'SwanBowl 2', city: 'Arnhem' }] },
+    { m: 'Dec', events: [{ name: 'Arcane Forge Series #6 Fully Loaded', city: 'Amsterdam' }] }
+  ];
+
+  var leagueOf = {};
+  cities.forEach(function(c){ leagueOf[c.name] = c.league; });
+  var countOf = {};
+  months.forEach(function(mo){ mo.events.forEach(function(e){ countOf[e.city] = (countOf[e.city] || 0) + 1; }); });
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(ch){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[ch]; }); }
+
+  document.getElementById('mapPins').innerHTML = cities.map(function(c){
+    return '<button type="button" class="map-pin ' + c.side + '" data-city="' + esc(c.name) + '" style="left:' + c.x + '%;top:' + c.y + '%" aria-pressed="false">' +
+      '<span class="dot" aria-hidden="true"></span><span class="pin-label">' + esc(c.name) + '</span></button>';
+  }).join('');
+
+  document.getElementById('cityList').innerHTML = cities.map(function(c){
+    var n = countOf[c.name] || 0;
+    return '<li><button type="button" class="city-btn" data-city="' + esc(c.name) + '" aria-pressed="false">' +
+      '<span class="city-name">' + esc(c.name) + '</span><span class="city-league">' + esc(c.league) + '</span>' +
+      '<span class="city-count">' + n + (n === 1 ? ' qualifier' : ' qualifiers') + '</span></button></li>';
+  }).join('');
+
+  function renderMonth(mo){
+    if (!mo.events.length) {
+      return '<div class="cal-month empty" data-month="' + mo.m + '"><div class="cal-m">' + mo.m + '</div>' +
+        '<div class="cal-none">No tournaments this month</div></div>';
+    }
+    return '<div class="cal-month" data-month="' + mo.m + '"><div class="cal-m">' + mo.m + '</div><div class="cal-events">' +
+      mo.events.map(function(e){
+        var date = e.date ? '<div class="cal-date">' + esc(e.date) + '</div>' : '<div class="cal-date tba">Date TBA</div>';
+        return '<div class="cal-event" data-city="' + esc(e.city) + '">' + date +
+          '<div><div class="cal-name">' + esc(e.name) + '</div><div class="cal-where">' + esc(e.city) + ' &middot; ' + esc(leagueOf[e.city]) + '</div></div></div>';
+      }).join('') + '</div></div>';
+  }
+  document.getElementById('calH1').innerHTML = months.slice(0, 6).map(renderMonth).join('');
+  document.getElementById('calH2').innerHTML = months.slice(6).map(renderMonth).join('');
+
+  var current = null;
+  function select(city){
+    current = (city === current) ? null : city;
+    document.querySelectorAll('[data-city][aria-pressed]').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.city === current));
+    });
+    // Highlight instead of hiding, so the calendar keeps its size and nothing jumps
+    document.querySelectorAll('.cal-event').forEach(function(ev){
+      ev.classList.toggle('is-match', !!current && ev.dataset.city === current);
+      ev.classList.toggle('is-dim', !!current && ev.dataset.city !== current);
+    });
+    document.getElementById('calFilter').hidden = !current;
+    document.getElementById('calFilterCity').textContent = current || '';
+  }
+  document.querySelectorAll('[data-city][aria-pressed]').forEach(function(b){
+    b.addEventListener('click', function(){
+      select(b.dataset.city);
+    });
+  });
+  document.getElementById('calFilterClear').addEventListener('click', function(){ select(current); });
+})();
+</script>
