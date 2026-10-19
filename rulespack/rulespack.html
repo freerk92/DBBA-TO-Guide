@@ -72,6 +72,8 @@ section p{margin:0 0 2mm;}
 .intro{font-size:10.5pt;padding:4mm 5mm;background:var(--chip);border-left:1.6mm solid var(--orange);}
 ul.d{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:1.4mm;}
 ul.d li{position:relative;padding-left:5.5mm;}
+ul.d.sub{margin-top:1.2mm;}
+ul.d.sub li::before{background:var(--muted);width:1.6mm;height:1.6mm;top:1.9mm;}
 ul.d li::before{content:"";position:absolute;left:0.6mm;top:1.6mm;width:2.2mm;height:2.2mm;background:var(--orange);transform:rotate(45deg);}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:8mm;}
 
@@ -154,7 +156,9 @@ ol.tb li::before{content:counter(tb);flex:none;width:5.5mm;height:5.5mm;border-r
       <ul class="d" style="margin-top:3mm">
         <li>No player may receive more than one extra skill.</li>
         <li>A Primary skill may always be taken instead of a Secondary skill.</li>
-        <li><strong>Banned skills:</strong> Leader and Pro, as per Spike! #22.</li>
+        <li><strong>Banned skills:</strong> Leader and Pro, as per Spike! #22.
+          <ul class="d sub"><li>Team Captain might be something you also want to ban. This is however up to the Tournament Organizer.</li></ul>
+        </li>
       </ul>
     </section>
   </div>

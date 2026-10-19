@@ -198,6 +198,7 @@ const body = [
   bullet([run('No player may receive more than one extra skill.')]),
   bullet([run('A Primary skill may always be taken instead of a Secondary skill.')]),
   bullet(lead('Banned skills: ', 'Leader and Pro, as per Spike! #22.')),
+  new Paragraph({ numbering: { reference: 'diamond', level: 1 }, spacing: { after: 70, line: 276 }, children: [run('Team Captain might be something you also want to ban. This is however up to the Tournament Organizer.')] }),
 
   new Paragraph({ children: [new PageBreak()] }),
   heading('05', 'Team tiers'),
@@ -276,7 +277,9 @@ const doc = new Document({
   numbering: {
     config: [
       { reference: 'diamond', levels: [{ level: 0, format: LevelFormat.BULLET, text: '■', alignment: AlignmentType.LEFT,
-        style: { paragraph: { indent: { left: 360, hanging: 300 } }, run: { color: ORANGE, size: 16 } } }] },
+        style: { paragraph: { indent: { left: 360, hanging: 300 } }, run: { color: ORANGE, size: 16 } } },
+        { level: 1, format: LevelFormat.BULLET, text: '\u25A0', alignment: AlignmentType.LEFT,
+        style: { paragraph: { indent: { left: 720, hanging: 300 } }, run: { color: MUTED, size: 12 } } }] },
       { reference: 'tiebreak', levels: [{ level: 0, format: LevelFormat.DECIMAL, text: '%1', alignment: AlignmentType.LEFT,
         style: { paragraph: { indent: { left: 400, hanging: 400 } }, run: { color: ORANGE, bold: true } } }] },
     ],
