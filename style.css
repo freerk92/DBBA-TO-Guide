@@ -388,7 +388,7 @@ body > footer{
 
 /* ---------- Top bar (shared across pages) ---------- */
 .topbar{position:sticky;top:0;z-index:10;background:#111C33;border-bottom:2px solid var(--orange);}
-.topbar-inner{display:flex;align-items:center;gap:20px;min-height:52px;}
+.topbar-inner{display:flex;align-items:center;gap:16px;min-height:52px;}
 .topbar-brand{
   display:inline-flex;align-items:center;gap:8px;flex:none;
   font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;font-size:22px;letter-spacing:.02em;
@@ -399,17 +399,17 @@ body > footer{
 .topbar-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;}
 .topbar-links::-webkit-scrollbar{display:none;}
 .topbar-links a{
-  flex:none;padding:16px 10px 13px;border-bottom:3px solid transparent;
+  flex:none;padding:16px 8px 13px;border-bottom:3px solid transparent;
   font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
   color:var(--cream);opacity:.8;text-decoration:none;
 }
 .topbar-links a:hover{opacity:1;color:var(--orange);}
 .topbar-links a[aria-current="page"]{opacity:1;color:var(--orange);border-bottom-color:var(--orange);}
 @media (max-width:480px){
-  .topbar-inner{gap:10px;}
+  .topbar-inner{gap:6px;}
   .topbar-long,.topbar-brand span{display:none;}
   .topbar-links{gap:0;}
-  .topbar-links a{padding-inline:5px;font-size:11px;letter-spacing:.03em;}
+  .topbar-links a{padding-inline:4px;font-size:10.5px;letter-spacing:.02em;}
 }
 
 /* ---------- 2027 calendar ---------- */
@@ -504,3 +504,76 @@ figure.share-img{margin:0;max-width:none;}
 @media (max-width:480px){
   .topbar-brand .brand-short{display:none;}
 }
+
+/* ---------- Info page ---------- */
+.lead-text{margin:0 0 24px;font-size:17px;max-width:62ch;text-wrap:pretty;}
+.plain{margin:0;max-width:62ch;color:var(--ink-muted);font-size:15.5px;text-wrap:pretty;}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px 12px;margin:20px 0 0;}
+.cta-row .btn-reset{margin-top:0;text-decoration:none;}
+.keydates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+@media (max-width:560px){.keydates{grid-template-columns:1fr;gap:12px;}}
+.kd{border-top:6px solid var(--accent);padding-top:10px;}
+.kd.final{border-top-color:var(--ink);}
+.kd-when{font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;font-size:32px;line-height:1;text-transform:uppercase;}
+.kd.final .kd-when{color:var(--accent-ink);}
+.kd-what{margin-top:4px;color:var(--ink-muted);font-size:15px;}
+/* Open items the DBBA still has to fill in, kept visible on purpose */
+.tba-note{
+  margin:24px 0 0;padding:12px 16px;font-size:14.5px;color:var(--ink-muted);
+  background:var(--bg-alt);border:2px dashed var(--border);border-radius:6px;
+}
+.tba-note strong{color:var(--accent-ink);}
+.showdown-cards{margin-top:24px;}
+.req-card ul li{padding-left:18px;}
+.card h3 + p.lead{margin-top:-4px;}
+
+.faq{display:flex;flex-direction:column;gap:8px;}
+.faq details{background:var(--bg-alt);border:1.5px solid var(--border);border-radius:8px;}
+.faq details[open]{border-color:var(--accent);}
+.faq summary{
+  cursor:pointer;list-style:none;padding:13px 44px 13px 16px;min-height:48px;position:relative;
+  font-weight:800;font-size:16px;
+}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{
+  content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:22px;font-weight:800;color:var(--accent-ink);
+}
+.faq details[open] summary::after{content:"\2212";}
+.faq details p{margin:0;padding:0 16px 16px;color:var(--ink-muted);font-size:15px;max-width:62ch;}
+
+/* ---------- Info page: players / organizers split ---------- */
+.legend-split{flex-direction:column;gap:10px;}
+.legend-group{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;}
+.legend-label{
+  flex:none;width:92px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+}
+@media (max-width:640px){.legend-label{width:100%;}}
+
+.pick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px;}
+@media (max-width:640px){.pick-grid{grid-template-columns:1fr;}}
+.pick{
+  display:flex;flex-direction:column;gap:6px;padding:20px 24px 22px;border-radius:8px;
+  text-decoration:none;color:inherit;border-top:6px solid;
+}
+.pick:hover{color:inherit;transform:translateY(-2px);}
+.pick{transition:transform .15s;}
+.pick-eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+.pick-title{font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:900;text-transform:uppercase;font-size:40px;line-height:.95;}
+.pick-text{font-size:15px;max-width:34ch;}
+.pick-go{margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
+.pick-players{background:var(--navy);color:var(--cream);border-top-color:var(--orange);}
+.pick-players .pick-eyebrow,.pick-players .pick-go{color:var(--orange);}
+.pick-organizers{background:var(--orange);color:var(--navy);border-top-color:var(--navy);}
+
+/* Full-width dividers that open each audience's part of the page */
+.audience-band{padding:28px 30px 30px;border-radius:8px;margin-block:8px 0;scroll-margin-top:66px;}
+.audience-band .band-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;}
+.audience-band h2{font-size:clamp(44px,9vw,76px);line-height:.88;margin:6px 0 10px;}
+.audience-band p{margin:0;max-width:52ch;font-size:16.5px;}
+.audience-band.players{background:var(--navy);color:var(--cream);border-top:8px solid var(--orange);}
+.audience-band.players .band-eyebrow{color:var(--orange);}
+.audience-band.players h2{color:var(--cream);}
+.audience-band.organizers{background:var(--orange);color:var(--navy);border-top:8px solid var(--navy);}
+.audience-band.organizers h2{color:var(--navy);}
+main > .audience-band + section{border-top:none;}
